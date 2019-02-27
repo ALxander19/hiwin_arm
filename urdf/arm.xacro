@@ -1,0 +1,207 @@
+<?xml version="1.0" ?>
+
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- BEGIN - Include -->
+  <xacro:include filename="$(find hiwin_arm)/urdf/robot_parameters.xacro" />
+  <xacro:include filename="$(find hiwin_arm)/urdf/links_joints.xacro" />
+  <xacro:include filename="$(find hiwin_arm)/urdf/materials.xacro" />
+  <!-- END - Include -->
+
+  <!-- World frame (for Gazebo) -->
+  <link name="world"/>
+
+  <!-- Arm fixed to world frame  -->
+  <joint name="world_cell" type="fixed">
+    <parent link="world"/>
+    <child link="cell"/>
+  </joint>
+
+  <m_link_mesh name="cell" color="black"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="157.633"
+              ixx="13.235" ixy="0" ixz="0"
+              iyy="13.235" iyz="0"
+              izz="9.655"
+              meshfile="package://hiwin_arm/meshes/cell_low.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <joint name="cell_${link_00_name}" type="fixed">
+    <parent link="cell" origin_xyz="-0.445 0 0.391"/>
+    <child link="${link_00_name}"/>
+  </joint>
+
+  <!-- BEGIN - Robot description -->
+
+  <m_link_mesh name="${link_00_name}" color="white"
+              origin_rpy="0 0 0" origin_xyz="-0.445 0 0.391"
+              mass="50"
+              ixx="300" ixy="0" ixz="0"
+              iyy="300" iyz="0"
+              izz="300"
+              meshfile="package://hiwin_arm/meshes/base_link_low.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
+           axis_xyz="0 0 1"
+           origin_rpy="0 0 0" origin_xyz="-0.445 0 0.615"
+           parent="${link_00_name}" child="${link_01_name}"
+           limit_e="1000" limit_l="-3.0" limit_u="3.0" limit_v="0.5" />
+
+  <m_link_mesh name="${link_01_name}" color="white"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="15"
+              ixx="100" ixy="0" ixz="0"
+              iyy="100" iyz="0"
+              izz="100"
+              meshfile="package://hiwin_arm/meshes/link_01_low.stl"
+              meshscale="0.001 0.001 0.001" />
+              
+  <m_joint name="${link_01_name}__${link_02_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0.03 0 0.15"
+           parent="${link_01_name}" child="${link_02_name}"
+           limit_e="1000" limit_l="-1.57" limit_u="1.57" limit_v="0.5" />
+
+  <m_link_mesh name="${link_02_name}" color="white"
+              origin_rpy="0 0 0" origin_xyz="0.0 0 0"
+              mass="10"
+              ixx="100" ixy="0" ixz="0"
+              iyy="100" iyz="0"
+              izz="100"
+              meshfile="package://hiwin_arm/meshes/link_02_low.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${link_02_name}__${link_03_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0.0005 0 0.340"
+           parent="${link_02_name}" child="${link_03_name}"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+
+  <m_link_mesh name="${link_03_name}" color="white"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="10"
+              ixx="100" ixy="0" ixz="0"
+              iyy="100" iyz="0"
+              izz="100"
+              meshfile="package://hiwin_arm/meshes/link_03_low.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${link_03_name}__${link_04_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0.339 0 0.04"
+           parent="${link_03_name}" child="${link_04_name}"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+
+  <m_link_mesh name="${link_04_name}" color="white"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="5"
+              ixx="100" ixy="0" ixz="0"
+              iyy="100" iyz="0"
+              izz="100"
+              meshfile="package://hiwin_arm/meshes/link_04_low.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <!--m_joint name="${link_04_name}__${gripper_name}" type="revolute"
+           axis_xyz="1 0 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.0765"
+           parent="${link_04_name}" child="${gripper_name}"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+
+  <m_link_mesh name="${gripper_name}" color="white"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="2"
+              ixx="100" ixy="0" ixz="0"
+              iyy="100" iyz="0"
+              izz="100"
+              meshfile="package://hiwin_arm/meshes/gripper.stl"
+              meshscale="0.001 0.001 0.001" /-->
+
+  <!-- END - Robot description -->
+  
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+  
+
+  <!-- BEGIN - DEPTH-RGB Camera -->
+
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="${camera_x} 0 ${camera_z}" rpy="0 1.57 0"/>
+    <parent link="cell"/>
+    <child link="${camera_name}"/>
+  </joint>
+
+  <link name="${camera_name}">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <gazebo reference="${camera_name}">
+    <sensor type="depth" name="openni_camera_camera">       
+        <always_on>1</always_on>
+        <visualize>true</visualize>             
+        <camera>
+            <horizontal_fov>1.047</horizontal_fov>  
+            <image>
+                <width>640</width>
+                <height>480</height>
+                <format>R8G8B8</format>
+            </image>
+            <depth_camera>
+
+            </depth_camera>
+            <clip>
+                <near>0.1</near>
+                <far>100</far>
+            </clip>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+            <alwaysOn>true</alwaysOn>
+                <updateRate>10.0</updateRate>
+                <cameraName>camera</cameraName>
+                <frameName>openni_camera_link</frameName>                   
+            <imageTopicName>rgb/image_raw</imageTopicName>
+            <depthImageTopicName>depth/image_raw</depthImageTopicName>
+            <pointCloudTopicName>depth/points</pointCloudTopicName>
+            <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>              
+            <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>            
+            <pointCloudCutoff>0.4</pointCloudCutoff>                
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            <CxPrime>0.0</CxPrime>
+            <Cx>0.0</Cx>
+            <Cy>0.0</Cy>
+            <focalLength>0.0</focalLength>
+        </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- END - DEPTH-RGB Camera -->
+
+</robot>
