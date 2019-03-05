@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="Bottle">      
+    <pose>0 0 0 0 0 0</pose>
+    <link name="base_link">
+       <inertial>
+          <mass>0.2</mass>
+        </inertial>        
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Bottle/collision/Bottle.stl</uri>
+              <scale>0.001 0.001 0.001</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+           <geometry>
+           <mesh>
+             <uri>model://Bottle/visual/Bottle.dae</uri>
+             <scale>0.001 0.001 0.001</scale>
+           </mesh>
+         </geometry>
+         <material> 
+            <ambient>0.8 .8 1 1</ambient>
+            <diffuse>0.9 .9 1 1</diffuse>
+            <emissive>0 0 0 0</emissive>
+          </material>
+        </visual>
+    </link>
+  </model>
+</sdf>

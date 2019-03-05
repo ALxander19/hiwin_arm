@@ -1,0 +1,15 @@
+<launch>
+
+  <!-- Launch the Gazebo simulation -->
+  <include file="$(find hiwin_arm)/launch/empty_world.launch"/>
+
+  <!-- Launch the joint trajectory controller -->
+  <include file="$(find arm_control)/launch/control.launch"/>
+
+  <!-- Launch the MoveIt! move group -->
+  <include file="$(find arm_control)/launch/moveit.launch"/>
+
+  <!-- Rviz to vizualize robot args="-d '$(find arm_control)/rviz/control.rviz'" -->
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" />
+
+</launch>

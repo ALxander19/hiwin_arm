@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="HollowCylinder">      
+      <pose>0 0 0 0 0 0</pose>
+      <link name="base_link">
+       <inertial>
+          <mass>.15</mass>
+        </inertial>        
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://HollowCylinder/collision/HollowCylinder.stl</uri>
+              <scale>0.001 0.001 0.001</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://HollowCylinder/visual/HollowCylinder.dae</uri>
+              <scale>0.001 0.001 0.001</scale>
+            </mesh>
+          </geometry>
+          <material>  
+            <ambient>1 0.5088 0.0468 1</ambient>  
+            <diffuse>1 0.5088 0.0468 1</diffuse>  
+          </material>  
+        </visual>
+    </link>
+    
+  </model>
+</sdf>

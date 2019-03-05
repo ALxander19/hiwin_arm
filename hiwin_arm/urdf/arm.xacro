@@ -5,7 +5,6 @@
   <!-- BEGIN - Include -->
   <xacro:include filename="$(find hiwin_arm)/urdf/robot_parameters.xacro" />
   <xacro:include filename="$(find hiwin_arm)/urdf/links_joints.xacro" />
-  <xacro:include filename="$(find hiwin_arm)/urdf/materials.xacro" />
   <!-- END - Include -->
 
   <!-- World frame (for Gazebo) -->
@@ -17,14 +16,18 @@
     <child link="cell"/>
   </joint>
 
-  <m_link_mesh name="cell" color="black"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
+  <m_link_mesh name="cell" color="grey"
+              origin_rpy="1.5708 0 0" origin_xyz="0 0 0"
               mass="157.633"
               ixx="13.235" ixy="0" ixz="0"
               iyy="13.235" iyz="0"
               izz="9.655"
-              meshfile="package://hiwin_arm/meshes/cell_low.stl"
+              meshfile="package://hiwin_arm/meshes/cell_lowq.stl"
               meshscale="0.001 0.001 0.001" />
+
+  <gazebo reference="cell">
+    <material>Gazebo/Grey</material>
+  </gazebo>
 
   <joint name="cell_${link_00_name}" type="fixed">
     <parent link="cell" origin_xyz="-0.445 0 0.391"/>
@@ -34,19 +37,19 @@
   <!-- BEGIN - Robot description -->
 
   <m_link_mesh name="${link_00_name}" color="white"
-              origin_rpy="0 0 0" origin_xyz="-0.445 0 0.391"
+              origin_rpy="0 0 1.5708" origin_xyz="-0.445 0 0.391"
               mass="50"
               ixx="300" ixy="0" ixz="0"
               iyy="300" iyz="0"
               izz="300"
-              meshfile="package://hiwin_arm/meshes/base_link_low.stl"
+              meshfile="package://hiwin_arm/meshes/base_link.stl"
               meshscale="0.001 0.001 0.001" />
 
   <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
            axis_xyz="0 0 1"
            origin_rpy="0 0 0" origin_xyz="-0.445 0 0.615"
            parent="${link_00_name}" child="${link_01_name}"
-           limit_e="1000" limit_l="-3.0" limit_u="3.0" limit_v="0.5" />
+           limit_e="1000" limit_l="-2.0" limit_u="2.0" limit_v="0.5" />
 
   <m_link_mesh name="${link_01_name}" color="white"
               origin_rpy="0 0 0" origin_xyz="0 0 0"
@@ -76,7 +79,7 @@
            axis_xyz="0 1 0"
            origin_rpy="0 0 0" origin_xyz="0.0005 0 0.340"
            parent="${link_02_name}" child="${link_03_name}"
-           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           limit_e="1000" limit_l="-2.0" limit_u="1.1" limit_v="0.5" />
 
   <m_link_mesh name="${link_03_name}" color="white"
               origin_rpy="0 0 0" origin_xyz="0 0 0"
@@ -91,7 +94,7 @@
            axis_xyz="0 1 0"
            origin_rpy="0 0 0" origin_xyz="0.339 0 0.04"
            parent="${link_03_name}" child="${link_04_name}"
-           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           limit_e="1000" limit_l="-2.0" limit_u="2.0" limit_v="0.5" />
 
   <m_link_mesh name="${link_04_name}" color="white"
               origin_rpy="0 0 0" origin_xyz="0 0 0"
@@ -102,11 +105,11 @@
               meshfile="package://hiwin_arm/meshes/link_04_low.stl"
               meshscale="0.001 0.001 0.001" />
 
-  <!--m_joint name="${link_04_name}__${gripper_name}" type="revolute"
+  <m_joint name="${link_04_name}__${gripper_name}" type="revolute"
            axis_xyz="1 0 0"
-           origin_rpy="0 0 0" origin_xyz="0 0 0.0765"
+           origin_rpy="0 0 0" origin_xyz="0.0765 0 0"
            parent="${link_04_name}" child="${gripper_name}"
-           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           limit_e="1000" limit_l="-1.57" limit_u="1.57" limit_v="0.5" />
 
   <m_link_mesh name="${gripper_name}" color="white"
               origin_rpy="0 0 0" origin_xyz="0 0 0"
@@ -115,7 +118,7 @@
               iyy="100" iyz="0"
               izz="100"
               meshfile="package://hiwin_arm/meshes/gripper.stl"
-              meshscale="0.001 0.001 0.001" /-->
+              meshscale="0.001 0.001 0.001" />
 
   <!-- END - Robot description -->
   
@@ -129,7 +132,7 @@
 
   <!-- BEGIN - DEPTH-RGB Camera -->
 
-  <joint name="camera_joint" type="fixed">
+  <joint name="openni_camera_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="${camera_x} 0 ${camera_z}" rpy="0 1.57 0"/>
     <parent link="cell"/>
