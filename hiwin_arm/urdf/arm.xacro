@@ -42,12 +42,12 @@
               ixx="300" ixy="0" ixz="0"
               iyy="300" iyz="0"
               izz="300"
-              meshfile="package://hiwin_arm/meshes/base_link.stl"
+              meshfile="package://hiwin_arm/meshes/base_link_lowq.stl"
               meshscale="0.001 0.001 0.001" />
 
   <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
            axis_xyz="0 0 1"
-           origin_rpy="0 0 0" origin_xyz="-0.445 0 0.615"
+           origin_rpy="0 0 0" origin_xyz="-0.445 0 ${0.391+0.239}"
            parent="${link_00_name}" child="${link_01_name}"
            limit_e="1000" limit_l="-2.0" limit_u="2.0" limit_v="0.5" />
 
@@ -57,12 +57,12 @@
               ixx="100" ixy="0" ixz="0"
               iyy="100" iyz="0"
               izz="100"
-              meshfile="package://hiwin_arm/meshes/link_01_low.stl"
+              meshfile="package://hiwin_arm/meshes/link_01_lowq.stl"
               meshscale="0.001 0.001 0.001" />
               
   <m_joint name="${link_01_name}__${link_02_name}" type="revolute"
            axis_xyz="0 1 0"
-           origin_rpy="0 0 0" origin_xyz="0.03 0 0.15"
+           origin_rpy="0 0 0" origin_xyz="0.030 0 0.138"
            parent="${link_01_name}" child="${link_02_name}"
            limit_e="1000" limit_l="-1.57" limit_u="1.57" limit_v="0.5" />
 
@@ -72,12 +72,12 @@
               ixx="100" ixy="0" ixz="0"
               iyy="100" iyz="0"
               izz="100"
-              meshfile="package://hiwin_arm/meshes/link_02_low.stl"
+              meshfile="package://hiwin_arm/meshes/link_02_lowq.stl"
               meshscale="0.001 0.001 0.001" />
 
   <m_joint name="${link_02_name}__${link_03_name}" type="revolute"
            axis_xyz="0 1 0"
-           origin_rpy="0 0 0" origin_xyz="0.0005 0 0.340"
+           origin_rpy="0 0 0" origin_xyz="0.000 0 0.340"
            parent="${link_02_name}" child="${link_03_name}"
            limit_e="1000" limit_l="-2.0" limit_u="1.1" limit_v="0.5" />
 
@@ -87,12 +87,12 @@
               ixx="100" ixy="0" ixz="0"
               iyy="100" iyz="0"
               izz="100"
-              meshfile="package://hiwin_arm/meshes/link_03_low.stl"
+              meshfile="package://hiwin_arm/meshes/link_03_lowq.stl"
               meshscale="0.001 0.001 0.001" />
 
   <m_joint name="${link_03_name}__${link_04_name}" type="revolute"
            axis_xyz="0 1 0"
-           origin_rpy="0 0 0" origin_xyz="0.339 0 0.04"
+           origin_rpy="0 0 0" origin_xyz="0.340 0 0.040"
            parent="${link_03_name}" child="${link_04_name}"
            limit_e="1000" limit_l="-2.0" limit_u="2.0" limit_v="0.5" />
 
@@ -102,12 +102,12 @@
               ixx="100" ixy="0" ixz="0"
               iyy="100" iyz="0"
               izz="100"
-              meshfile="package://hiwin_arm/meshes/link_04_low.stl"
+              meshfile="package://hiwin_arm/meshes/link_04_lowq.stl"
               meshscale="0.001 0.001 0.001" />
 
   <m_joint name="${link_04_name}__${gripper_name}" type="revolute"
            axis_xyz="1 0 0"
-           origin_rpy="0 0 0" origin_xyz="0.0765 0 0"
+           origin_rpy="0 0 0" origin_xyz="0.0765 0 0.000"
            parent="${link_04_name}" child="${gripper_name}"
            limit_e="1000" limit_l="-1.57" limit_u="1.57" limit_v="0.5" />
 

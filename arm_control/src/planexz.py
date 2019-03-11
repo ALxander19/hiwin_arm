@@ -27,9 +27,9 @@ rospy.sleep(1)
 # First point declaration
 pose_target = geometry_msgs.msg.Pose()
 pose_target.orientation.x = 0.0
-pose_target.orientation.y = 0.0
-pose_target.orientation.z = -0.0
-pose_target.orientation.w = 1.0
+pose_target.orientation.y = 0.707
+pose_target.orientation.z = 0.0
+pose_target.orientation.w = 0.707
 pose_target.position.x = 0.10
 pose_target.position.y = 0.00
 pose_target.position.z = 1.00
@@ -46,7 +46,8 @@ print ""
 rospy.sleep(1)
 
 # Second point declaration
-pose_target.position.z = 1.10
+pose_target.position.y = 0.05
+pose_target.position.z = 1.05
 group.set_pose_target(pose_target)
 
 movement = group.go(wait=True)
@@ -60,7 +61,7 @@ print ""
 rospy.sleep(2)
 
 # Third point declaration
-pose_target.position.z = 1.00
+pose_target.position.y = -0.05
 group.set_pose_target(pose_target)
 
 movement = group.go(wait=True)
@@ -68,6 +69,36 @@ group.stop()
 group.clear_pose_targets()
 
 print "====== Point 3/5 ======"
+print group.get_current_pose().pose
+print ""
+
+rospy.sleep(2)
+
+# Fourth point declaration
+pose_target.position.y = -0.05
+pose_target.position.z = 0.95
+group.set_pose_target(pose_target)
+
+movement = group.go(wait=True)
+group.stop()
+group.clear_pose_targets()
+
+print "====== Point 4/5 ======"
+print group.get_current_pose().pose
+print ""
+
+rospy.sleep(2)
+
+# Fifth point declaration
+pose_target.position.y = 0.05
+pose_target.position.z = 0.95
+group.set_pose_target(pose_target)
+
+movement = group.go(wait=True)
+group.stop()
+group.clear_pose_targets()
+
+print "====== Point 5/5 ======"
 print group.get_current_pose().pose
 print ""
 

@@ -26,9 +26,9 @@ pose_target.orientation.x = 0.0
 pose_target.orientation.y = 0.707
 pose_target.orientation.z = 0.0
 pose_target.orientation.w = 0.707
-pose_target.position.x = origin_X = 0.00
-pose_target.position.y = 0.00
-pose_target.position.z = 1.00
+pose_target.position.x = origin_X = 0.10
+pose_target.position.y = 0.05
+pose_target.position.z = 1.10
 group.set_pose_target(pose_target)
 
 
