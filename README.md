@@ -2,7 +2,7 @@
 Steps to load the robot and the IK
 
 1. Copy or download the packages in the your ros workspace
-2. go to the folder where is you workspace, for example:
+2. Go to the folder where is you workspace, for example:
 
 $ cd ros_ws
 
@@ -10,7 +10,7 @@ $ cd ros_ws
 
 /ros_ws$ catkin_make
 
-4. run the roslaunch for moveit
+4. Run the roslaunch for moveit
 
 /ros_ws$ roslaunch hiwin_moveit demo.launch
 
