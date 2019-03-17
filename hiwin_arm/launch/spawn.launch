@@ -36,6 +36,8 @@
           joint3_position_controller
           joint4_position_controller
           joint5_position_controller
+          clamp_r_position_controller
+          clamp_l_position_controller
           --timeout 60">
     </node>
         

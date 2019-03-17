@@ -45,8 +45,8 @@ public:
 
         // Extract chain from KDL tree.
         KDL::Chain chain;
-        if (!tree.getChain("base_link", "electric_gripper", chain)) {
-            ROS_ERROR("Failed to extract chain from 'base_link' to 'electric_gripper' in kdl tree");
+        if (!tree.getChain("base_link", "link_04", chain)) {
+            ROS_ERROR("Failed to extract chain from 'base_link' to 'link_04' in kdl tree");
             return false;
         }
         ROS_INFO("Extracted chain from kdl tree");

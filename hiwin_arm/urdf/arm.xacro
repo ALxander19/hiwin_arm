@@ -117,8 +117,46 @@
               ixx="100" ixy="0" ixz="0"
               iyy="100" iyz="0"
               izz="100"
-              meshfile="package://hiwin_arm/meshes/gripper.stl"
+              meshfile="package://hiwin_arm/meshes/gripper_lowq.stl"
               meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${gripper_name}__clamp_r" type="prismatic"
+           axis_xyz="1 0 0"
+           origin_rpy="1.57 0 1.57" origin_xyz="0.108 -0.05 0.000"
+           parent="${gripper_name}" child="clamp_r"
+           limit_e="1000" limit_l="0.00" limit_u="0.03" limit_v="0.5" />
+
+  <m_link_mesh name="clamp_r" color="black"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="0.1"
+              ixx="50" ixy="0" ixz="0"
+              iyy="50" iyz="0"
+              izz="50"
+              meshfile="package://hiwin_arm/meshes/clamp_lowq.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <gazebo reference="clamp_r">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <m_joint name="${gripper_name}__clamp_l" type="prismatic"
+           axis_xyz="1 0 0"
+           origin_rpy="1.57 3.14 1.57" origin_xyz="0.108 0.05 0.000"
+           parent="${gripper_name}" child="clamp_l"
+           limit_e="1000" limit_l="0.00" limit_u="0.03" limit_v="0.5" />
+
+  <m_link_mesh name="clamp_l" color="black"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="0.1"
+              ixx="50" ixy="0" ixz="0"
+              iyy="50" iyz="0"
+              izz="50"
+              meshfile="package://hiwin_arm/meshes/clamp_lowq.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <gazebo reference="clamp_l">
+    <material>Gazebo/Black</material>
+  </gazebo>
 
   <!-- END - Robot description -->
   

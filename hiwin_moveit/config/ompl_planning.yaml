@@ -148,3 +148,31 @@ arm:
     - SPARStwo
   projection_evaluator: joints(base_link__link_01,link_01__link_02)
   longest_valid_segment_fraction: 0.005
+gripper:
+  default_planner_config: None
+  planner_configs:
+    - SBL
+    - EST
+    - LBKPIECE
+    - BKPIECE
+    - KPIECE
+    - RRT
+    - RRTConnect
+    - RRTstar
+    - TRRT
+    - PRM
+    - PRMstar
+    - FMT
+    - BFMT
+    - PDST
+    - STRIDE
+    - BiTRRT
+    - LBTRRT
+    - BiEST
+    - ProjEST
+    - LazyPRM
+    - LazyPRMstar
+    - SPARS
+    - SPARStwo
+  projection_evaluator: joints(link_04__electric_gripper,electric_gripper__clamp_l)
+  longest_valid_segment_fraction: 0.005

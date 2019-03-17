@@ -5,4 +5,8 @@ controller_list:
       - link_01__link_02
       - link_02__link_03
       - link_03__link_04
+  - name: fake_gripper_controller
+    joints:
       - link_04__electric_gripper
+      - electric_gripper__clamp_l
+      - electric_gripper__clamp_r
